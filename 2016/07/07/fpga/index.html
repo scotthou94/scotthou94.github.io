@@ -5,16 +5,16 @@
   
   <title>Getting to know RGMII | Scott`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Currently I`m working on a project which aims to accelerate virtual network functions with FPGA. Ive been waiting for months but still haven\t got the high-end FPGA our lab purchased last year. Theref">
+  <meta name="description" content="Currently I`m working on a project which aims to accelerate virtual network functions with FPGA. I`ve been waiting for months but still haven`t got the high-end FPGA our lab purchased last year. There">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Getting to know RGMII">
 <meta property="og:url" content="http://yoursite.com/2016/07/07/fpga/index.html">
 <meta property="og:site_name" content="Scott`s blog">
-<meta property="og:description" content="Currently I`m working on a project which aims to accelerate virtual network functions with FPGA. Ive been waiting for months but still haven\t got the high-end FPGA our lab purchased last year. Theref">
-<meta property="og:updated_time" content="2016-07-07T11:19:11.484Z">
+<meta property="og:description" content="Currently I`m working on a project which aims to accelerate virtual network functions with FPGA. I`ve been waiting for months but still haven`t got the high-end FPGA our lab purchased last year. There">
+<meta property="og:updated_time" content="2016-07-07T11:20:11.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Getting to know RGMII">
-<meta name="twitter:description" content="Currently I`m working on a project which aims to accelerate virtual network functions with FPGA. Ive been waiting for months but still haven\t got the high-end FPGA our lab purchased last year. Theref">
+<meta name="twitter:description" content="Currently I`m working on a project which aims to accelerate virtual network functions with FPGA. I`ve been waiting for months but still haven`t got the high-end FPGA our lab purchased last year. There">
   
     <link rel="alternate" href="/atom.xml" title="Scott`s blog" type="application/atom+xml">
   
@@ -85,13 +85,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Currently I`m working on a project which aims to accelerate virtual network functions with FPGA. I<code>ve been waiting for months but still haven\</code>t got the high-end FPGA our lab purchased last year. Therefore, my fella I`ve been working together bought a relatively low-end fpga, SPARTAN-6, so that we can carry on with the research.<br>See, the trend of heterogeneous computing is moving towards <strong>OpenCL</strong> which has numerous advantages, such as familiar development experience among others, that can facilitate our research. Unfortunately, the fpga board we now have doesn`t support OpenCL which leaves us with no course but to code in Verilog. Although I`ve worked on Verilog for a while to develop an E-piano based on fpga with an external keyboard, conducting the research project is another league. So recently I`m learning how to do network programming with Verilog.<br>For starters, I need to get familiar with RGMII.</p>
+        <p>Currently I`m working on a project which aims to accelerate virtual network functions with FPGA. I`ve been waiting for months but still haven`t got the high-end FPGA our lab purchased last year. Therefore, my fella I`ve been working together bought a relatively low-end fpga, SPARTAN-6, so that we can carry on with the research.<br>See, the trend of heterogeneous computing is moving towards <strong>OpenCL</strong> which has numerous advantages, such as familiar development experience among others, that can facilitate our research. Unfortunately, the fpga board we now have doesn`t support OpenCL which leaves us with no course but to code in Verilog. Although I`ve worked on Verilog for a while to develop an E-piano based on fpga with an external keyboard, conducting the research project is another league. So recently I`m learning how to do network programming with Verilog.<br>For starters, I need to get familiar with RGMII.</p>
 <h3 id="RGMII"><a href="#RGMII" class="headerlink" title="RGMII"></a>RGMII</h3><p>Reduced Gigabit Media-Independent Interface is the interface that connects fast ethernet MAC to a PHY chip. RGMII PHY and a VSC8601 chip are integrated in the Spartan-6 fpga board. Sending/Receiving datastreams using RGMII is not that hard once we know the rules that have to be followed. The interface is programmable which means we`re presented with a lot of choices regarding the data transmission/receiving. Here I`m going to talk about the DDR mode.<br>DDR stands for double data rate. Implement this function is simple. By instantiating the primitive of IDDR2/ODDR2, we can set the right parameters so that the data would be transeived at DDR mode. Also, the robustness of the data transmission could be tested by a test program which sends data from 1 to 255 repeatedly.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/07/fpga/" data-id="ciqc80p5600011kqxxmrj6cnl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/07/fpga/" data-id="ciqc820l20003agqxse85ajb6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fpga-RGMII/">fpga, RGMII</a></li></ul>
