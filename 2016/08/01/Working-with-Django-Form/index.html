@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Scott`s blog</title>
+  <title>Working with Django Form | Scott`s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Share some thoughts">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Scott`s blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Still in the middle of buliding the myinstagram django project and it`s not going so well. Though I have successfully incorporated getstream API and use the activity_enricher to enrich every tweet, I`">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Working with Django Form">
+<meta property="og:url" content="http://yoursite.com/2016/08/01/Working-with-Django-Form/index.html">
 <meta property="og:site_name" content="Scott`s blog">
-<meta property="og:description" content="Share some thoughts">
+<meta property="og:description" content="Still in the middle of buliding the myinstagram django project and it`s not going so well. Though I have successfully incorporated getstream API and use the activity_enricher to enrich every tweet, I`">
+<meta property="og:updated_time" content="2016-08-01T14:54:17.609Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Scott`s blog">
-<meta name="twitter:description" content="Share some thoughts">
+<meta name="twitter:title" content="Working with Django Form">
+<meta name="twitter:description" content="Still in the middle of buliding the myinstagram django project and it`s not going so well. Though I have successfully incorporated getstream API and use the activity_enricher to enrich every tweet, I`">
   
     <link rel="alternate" href="/atom.xml" title="Scott`s blog" type="application/atom+xml">
   
@@ -62,9 +63,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Working-with-Django-Form" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Working-with-Django-Form" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/08/01/Working-with-Django-Form/" class="article-date">
   <time datetime="2016-08-01T13:40:42.000Z" itemprop="datePublished">2016-08-01</time>
@@ -77,8 +76,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/01/Working-with-Django-Form/">Working with Django Form</a>
+    <h1 class="article-title" itemprop="name">
+      Working with Django Form
     </h1>
   
 
@@ -136,134 +135,19 @@ return render(request, &apos;look/user.html&apos;, context)
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-fpga" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/07/fpga/" class="article-date">
-  <time datetime="2016-07-07T09:16:57.000Z" itemprop="datePublished">2016-07-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/07/fpga/">Getting to know RGMII</a>
-    </h1>
+    <a href="/2016/07/07/fpga/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">Getting to know RGMII</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Currently I`m working on a project which aims to accelerate virtual network functions with FPGA. I`ve been waiting for months but still haven`t got the high-end FPGA our lab purchased last year. Therefore, my fella I`ve been working together bought a relatively low-end fpga, SPARTAN-6, so that we can carry on with the research.<br>See, the trend of heterogeneous computing is moving towards <strong>OpenCL</strong> which has numerous advantages, such as familiar development experience among others, that can facilitate our research. Unfortunately, the fpga board we now have doesn`t support OpenCL which leaves us with no course but to code in Verilog. Although I`ve worked on Verilog for a while to develop an E-piano based on fpga with an external keyboard, conducting the research project is another league. So recently I`m learning how to do network programming with Verilog.<br>For starters, I need to get familiar with RGMII.</p>
-<h3 id="RGMII"><a href="#RGMII" class="headerlink" title="RGMII"></a>RGMII</h3><p>Reduced Gigabit Media-Independent Interface is the interface that connects fast ethernet MAC to a PHY chip. RGMII PHY and a VSC8601 chip are integrated in the Spartan-6 fpga board. Sending/Receiving datastreams using RGMII is not that hard once we know the rules that have to be followed. The interface is programmable which means we`re presented with a lot of choices regarding the data transmission/receiving. Here I`m going to talk about the DDR mode.<br>DDR stands for double data rate. Implement this function is simple. By instantiating the primitive of IDDR2/ODDR2, we can set the right parameters so that the data would be transeived at DDR mode. Also, the robustness of the data transmission could be tested by a test program which sends data from 1 to 255 repeatedly.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/07/fpga/" data-id="circ5orrz0003vkqx2odpnx5x" class="article-share-link">Partager</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fpga-RGMII/">fpga, RGMII</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/02/blog/" class="article-date">
-  <time datetime="2016-07-02T09:56:42.000Z" itemprop="datePublished">2016-07-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/02/blog/">Django</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Model-field-ForeignKey"><a href="#Model-field-ForeignKey" class="headerlink" title="Model field: ForeignKey"></a>Model field: <em>ForeignKey</em></h3><p>All the model fields are related to the database structures, specificly the database column. <em>Foreignkey</em> is a <strong>one-to-many</strong> relationship of django models. If the foreignkey field of model A is pointed to model B then it means that A and B are related.  </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/02/blog/" data-id="circ5orpd0000vkqxcj02cog6" class="article-share-link">Partager</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/model-field/">model field</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/01/hello-world/" class="article-date">
-  <time datetime="2016-07-01T03:25:33.062Z" itemprop="datePublished">2016-07-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/01/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/01/hello-world/" data-id="circ5orrb0001vkqx1pdv21ow" class="article-share-link">Partager</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 </section>
         
