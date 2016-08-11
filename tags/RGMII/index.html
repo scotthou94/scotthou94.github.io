@@ -16,11 +16,11 @@
 
     <title>
         
-          Getting to know RGMII｜scotthou94`s blog
+          scotthou94`s blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2016/07/07/fpga/">
+    <link rel="canonical" href="http://yoursite.com/tags/RGMII/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -55,7 +55,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="true
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -127,154 +127,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--only post-->
-
-    
-        <img class="wechat-title-img" src="post-default-img.jpg">
-    
-
-<style>
-
-    header.intro-header{
-        background-image: url('post-default-img.jpg')
-    }
-
-</style>
-
-<header class="intro-header" >
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <div class="post-heading">
-                    <h1>Getting to know RGMII</h1>
-                    
-                    <span class="meta">
-                         作者 Scott Hou
-                         <span>
-                          日期 2016-07-07
-                         </span>
-                    </span>
-                    <div class="tags text-center">
-                        
-                        <a class="tag" href="/tags/#fpga" title="fpga">fpga</a>
-                        
-                        <a class="tag" href="/tags/#RGMII" title="RGMII">RGMII</a>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="post-title-haojen">
-        <span>
-            Getting to know RGMII
-        </span>
-    </div>
-</header>
-
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-                <!-- Post Container -->
-            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-
-                <p>Currently I`m working on a project which aims to accelerate virtual network functions with FPGA. I`ve been waiting for months but still haven`t got the high-end FPGA our lab purchased last year. Therefore, my fella I`ve been working together bought a relatively low-end fpga, SPARTAN-6, so that we can carry on with the research.<br>See, the trend of heterogeneous computing is moving towards <strong>OpenCL</strong> which has numerous advantages, such as familiar development experience among others, that can facilitate our research. Unfortunately, the fpga board we now have doesn`t support OpenCL which leaves us with no course but to code in Verilog. Although I`ve worked on Verilog for a while to develop an E-piano based on fpga with an external keyboard, conducting the research project is another league. So recently I`m learning how to do network programming with Verilog.<br>For starters, I need to get familiar with RGMII.</p>
-<h3 id="RGMII"><a href="#RGMII" class="headerlink" title="RGMII"></a>RGMII</h3><p>Reduced Gigabit Media-Independent Interface is the interface that connects fast ethernet MAC to a PHY chip. RGMII PHY and a VSC8601 chip are integrated in the Spartan-6 fpga board. Sending/Receiving datastreams using RGMII is not that hard once we know the rules that have to be followed. The interface is programmable which means we`re presented with a lot of choices regarding the data transmission/receiving. Here I`m going to talk about the DDR mode.<br>DDR stands for double data rate. Implement this function is simple. By instantiating the primitive of IDDR2/ODDR2, we can set the right parameters so that the data would be transeived at DDR mode. Also, the robustness of the data transmission could be tested by a test program which sends data from 1 to 255 repeatedly.</p>
-
-
-                <hr>
-
-                
-
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2016/08/01/Working-with-Django-Form/" data-toggle="tooltip" data-placement="top" title="Working with Django Form">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2016/07/02/blog/" data-toggle="tooltip" data-placement="top" title="Django">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
-
-                
-
-                
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
-                
-
-            </div>
-
-            <div class="hidden-xs col-sm-3 toc-col" >
-                <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#RGMII"><span class="toc-text">RGMII</span></a></li></ol>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                <h5 class="text-center">
-                    <a href="/tags/">FEATURED TAGS</a>
-                </h5>
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#fpga" title="fpga">fpga</a>
-                        
-                          <a class="tag" href="/tags/#RGMII" title="RGMII">RGMII</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-        </div>
-
-    </div>
-</article>
-
-
-
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "disqus_NrF2sRCUNF";
-    var disqus_identifier = "http://yoursite.com/2016/07/07/fpga/";
-    var disqus_url = "http://yoursite.com/2016/07/07/fpga/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-
-
-
-
-
     <!-- Footer -->
     <!-- Footer -->
 <footer>
