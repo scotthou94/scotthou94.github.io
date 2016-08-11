@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Share some thoughts">
+    <meta name="keyword"  content="undefined">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#60090">
+    <link rel="shortcut icon" href="/img/coffee.png">
+
+    <title>
+        
+          Working with Django Form｜undefined
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2016/08/01/Working-with-Django-Form/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<style>
+
+    header.intro-header{
+        background-image: url('undefined')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <span class="brand-logo">
+                    Scott`s blog
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!--only post-->
+
+    
+        <img class="wechat-title-img" src="">
+    
+
+<style>
+
+    header.intro-header{
+        background-image: url('')
+    }
+
+</style>
+
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Working with Django Form</h1>
+                    
+                    <span class="meta">
+                         作者 Scott Hou
+                         <span>
+                          日期 2016-08-01
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#Django" title="Django">Django</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Working with Django Form
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+                <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+
+                <p>Still in the middle of buliding the <em>myinstagram</em> django project and it`s not going so well. Though I have successfully incorporated <em>getstream</em> API and use the <code>activity_enricher</code> to enrich every tweet, I`m having trouble creating the timeline for the user.  </p>
+<p>Right now I can:</p>
+<ol>
+<li>create tweet from python shell using <code>Tweet.objects.create()</code> method to create tweets with specific user and tweet text. </li>
+<li>login and see all the tweets the user has ever tweeted.  </li>
+</ol>
+<p>What I`m going to do is:</p>
+<ol>
+<li>incorporate UI feature where user could create tweet on the webpage, basically just a input box. </li>
+<li>display other users so that they can be followed.  </li>
+</ol>
+<h3 id="Django-Form"><a href="#Django-Form" class="headerlink" title="Django Form"></a>Django Form</h3><p>The problem I`m having now is dealing with <code>Django Form</code>. The <code>Django Form</code> is basically a <code>&lt;form&gt;</code> tag in html but more than that. It`s the interface where user could interact with the django database, to create new instances of django models or alter the fields of existing database instances, for example. So this is a little background on the <em>Form</em>.  </p>
+<p>The mechanism of how <code>Django Form</code> works is like this:  </p>
+<p>First of all, there need to be a <code>forms.py</code> file in the project and a <code>Form</code> class should be defined. There are two ways to create a Form class:  </p>
+<ol>
+<li>Subclassing the <code>django.forms.Form</code> and specify every field that you expect to use.  </li>
+<li>Creating forms based on existing models. To do this I can just <code>from django.forms import ModelForm</code> and import the model I need then appoint my model to the <code>model</code> attribute of the <code>ModelForm</code>.  </li>
+</ol>
+<p>Secondly, I need to tell the view to render the form and process the data which will be posted by users to create their own tweets. This process involves checking the method of the HTTP request: all the tweet should be a HTTP POST request. Apart from this, the data which is passed through the POST need to be validated before it can be processed by django.  </p>
+<p>And finally, in the html template a snippet of codes is required to actually render the form. It`s simply like this:  </p>
+<pre><code>&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;
+  {% csrf_token %}
+  {% form %}
+&lt;input type=&quot;submit&quot; value=&quot;Tweet&quot; /&gt;
+&lt;/form&gt;
+</code></pre><p>And that`s it!  </p>
+<p>But in reality, it doesn`t work. And I`ve been trying to figure out why but so far I didn`t have any luck. I kind of figured out what went wrong but I can`t explain it nor can I solve the problem.  </p>
+<p>The thing is, I <em>can</em> actually render the form using python shell and it`s a bunch of html form tags and codes which are exactly what I need. However, the <code></code> in the html template is not working. So this led me to check whether the view has correctly render the <code>context</code>. The <code>context</code> looks like this:</p>
+<pre><code>context = {
+    &apos;activities&apos;: activities,
+    &apos;user&apos;: user,
+    &apos;login_user&apos;: request.user,
+    &apos;form&apos;: form
+}
+return render(request, &apos;look/user.html&apos;, context)
+</code></pre><p>all the other key / value pairs work just fine but the <code>form</code> variable is not available in the <code>.html</code>. I did something like this:</p>
+<pre><code>{% if form %} form is true
+    {% else %} form is false
+    {% endif %}
+</code></pre><p>the result is <code>form is false</code> which indicates although I passed the TweetForm instance to the context, somehow it`s not available in the html and I can`t explain what is going on because it should have worked.<br>I already posted a question on <a href="http://stackoverflow.com/questions/38697257/cant-render-django-form-in-the-template" target="_blank" rel="external">stackoverflow: Cant`t render forms</a>. Hopefully someone could help me out on this one.  </p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/08/10/up/" data-toggle="tooltip" data-placement="top" title="Django Form Follow Up">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/07/07/fpga/" data-toggle="tooltip" data-placement="top" title="Getting to know RGMII">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col" >
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Django-Form"><span class="toc-text">Django Form</span></a></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <span class="text-muted"style="font-size: 14px">双击导航条返回顶部</span>
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Scott`s blog 2016
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','undefined','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!--wechat title img-->
+    <img class="wechat-title-img" src="undefined">
+</body>
+
+</html>
