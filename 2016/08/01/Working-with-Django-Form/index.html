@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Working with Django Form | Scott`s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Still in the middle of buliding the myinstagram django project and it`s not going so well. Though I have successfully incorporated getstream API and use the activity_enricher to enrich every tweet, I`">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Working with Django Form">
+<meta property="og:url" content="http://yoursite.com/2016/08/01/Working-with-Django-Form/index.html">
+<meta property="og:site_name" content="Scott`s blog">
+<meta property="og:description" content="Still in the middle of buliding the myinstagram django project and it`s not going so well. Though I have successfully incorporated getstream API and use the activity_enricher to enrich every tweet, I`">
+<meta property="og:updated_time" content="2016-08-01T14:57:43.328Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Working with Django Form">
+<meta name="twitter:description" content="Still in the middle of buliding the myinstagram django project and it`s not going so well. Though I have successfully incorporated getstream API and use the activity_enricher to enrich every tweet, I`">
+  
+    <link rel="alternate" href="/atom.xml" title="Scott`s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Scott`s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Working-with-Django-Form" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/01/Working-with-Django-Form/" class="article-date">
+  <time datetime="2016-08-01T13:40:42.000Z" itemprop="datePublished">2016-08-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Working with Django Form
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Still in the middle of buliding the <em>myinstagram</em> django project and it`s not going so well. Though I have successfully incorporated <em>getstream</em> API and use the <code>activity_enricher</code> to enrich every tweet, I`m having trouble creating the timeline for the user.  </p>
+<p>Right now I can:</p>
+<ol>
+<li>create tweet from python shell using <code>Tweet.objects.create()</code> method to create tweets with specific user and tweet text. </li>
+<li>login and see all the tweets the user has ever tweeted.  </li>
+</ol>
+<p>What I`m going to do is:</p>
+<ol>
+<li>incorporate UI feature where user could create tweet on the webpage, basically just a input box. </li>
+<li>display other users so that they can be followed.  </li>
+</ol>
+<h3 id="Django-Form"><a href="#Django-Form" class="headerlink" title="Django Form"></a>Django Form</h3><p>The problem I`m having now is dealing with <code>Django Form</code>. The <code>Django Form</code> is basically a <code>&lt;form&gt;</code> tag in html but more than that. It`s the interface where user could interact with the django database, to create new instances of django models or alter the fields of existing database instances, for example. So this is a little background on the <em>Form</em>.  </p>
+<p>The mechanism of how <code>Django Form</code> works is like this:  </p>
+<p>First of all, there need to be a <code>forms.py</code> file in the project and a <code>Form</code> class should be defined. There are two ways to create a Form class:  </p>
+<ol>
+<li>Subclassing the <code>django.forms.Form</code> and specify every field that you expect to use.  </li>
+<li>Creating forms based on existing models. To do this I can just <code>from django.forms import ModelForm</code> and import the model I need then appoint my model to the <code>model</code> attribute of the <code>ModelForm</code>.  </li>
+</ol>
+<p>Secondly, I need to tell the view to render the form and process the data which will be posted by users to create their own tweets. This process involves checking the method of the HTTP request: all the tweet should be a HTTP POST request. Apart from this, the data which is passed through the POST need to be validated before it can be processed by django.  </p>
+<p>And finally, in the html template a snippet of codes is required to actually render the form. It`s simply like this:  </p>
+<pre><code>&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;
+  {% csrf_token %}
+  {% form %}
+&lt;input type=&quot;submit&quot; value=&quot;Tweet&quot; /&gt;
+&lt;/form&gt;
+</code></pre><p>And that`s it!  </p>
+<p>But in reality, it doesn`t work. And I`ve been trying to figure out why but so far I didn`t have any luck. I kind of figured out what went wrong but I can`t explain it nor can I solve the problem.  </p>
+<p>The thing is, I <em>can</em> actually render the form using python shell and it`s a bunch of html form tags and codes which are exactly what I need. However, the <code></code> in the html template is not working. So this led me to check whether the view has correctly render the <code>context</code>. The <code>context</code> looks like this:</p>
+<pre><code>context = {
+    &apos;activities&apos;: activities,
+    &apos;user&apos;: user,
+    &apos;login_user&apos;: request.user,
+    &apos;form&apos;: form
+}
+return render(request, &apos;look/user.html&apos;, context)
+</code></pre><p>all the other key / value pairs work just fine but the <code>form</code> variable is not available in the <code>.html</code>. I did something like this:</p>
+<pre><code>{% if form %} form is true
+    {% else %} form is false
+    {% endif %}
+</code></pre><p>the result is <code>form is false</code> which indicates although I passed the TweetForm instance to the context, somehow it`s not available in the html and I can`t explain what is going on because it should have worked.<br>I already posted a question on <a href="http://stackoverflow.com/questions/38697257/cant-render-django-form-in-the-template" target="_blank" rel="external">stackoverflow: Cant`t render forms</a>. Hopefully someone could help me out on this one.  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/01/Working-with-Django-Form/" data-id="cirq390r60004r4qxdbf9oszz" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/10/up/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          Django Form Follow Up
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/07/fpga/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">Getting to know RGMII</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fpga-RGMII/">fpga, RGMII</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/model-field/">model field</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Django/" style="font-size: 10px;">Django</a> <a href="/tags/fpga-RGMII/" style="font-size: 10px;">fpga, RGMII</a> <a href="/tags/model-field/" style="font-size: 10px;">model field</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/10/up/">Django Form Follow Up</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/01/Working-with-Django-Form/">Working with Django Form</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/07/fpga/">Getting to know RGMII</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/02/blog/">Django</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/01/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Scott Hou<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
