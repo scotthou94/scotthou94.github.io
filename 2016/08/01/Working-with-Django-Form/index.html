@@ -201,27 +201,12 @@
 <li>Creating forms based on existing models. To do this I can just <code>from django.forms import ModelForm</code> and import the model I need then appoint my model to the <code>model</code> attribute of the <code>ModelForm</code>.  </li>
 </ol>
 <p>Secondly, I need to tell the view to render the form and process the data which will be posted by users to create their own tweets. This process involves checking the method of the HTTP request: all the tweet should be a HTTP POST request. Apart from this, the data which is passed through the POST need to be validated before it can be processed by django.  </p>
-<p>And finally, in the html template a snippet of codes is required to actually render the form. It`s simply like this:  </p>
-<pre><code>&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;
-  {% csrf_token %}
-  {% form %}
-&lt;input type=&quot;submit&quot; value=&quot;Tweet&quot; /&gt;
-&lt;/form&gt;
-</code></pre><p>And that`s it!  </p>
+<p>And finally, in the html template a snippet of codes is required to actually render the form. It`s simply like this:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">  &#123;% csrf_token %&#125;</div><div class="line">  &#123;% form %&#125;</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Tweet"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>And that`s it!  </p>
 <p>But in reality, it doesn`t work. And I`ve been trying to figure out why but so far I didn`t have any luck. I kind of figured out what went wrong but I can`t explain it nor can I solve the problem.  </p>
-<p>The thing is, I <em>can</em> actually render the form using python shell and it`s a bunch of html form tags and codes which are exactly what I need. However, the <code></code> in the html template is not working. So this led me to check whether the view has correctly render the <code>context</code>. The <code>context</code> looks like this:</p>
-<pre><code>context = {
-    &apos;activities&apos;: activities,
-    &apos;user&apos;: user,
-    &apos;login_user&apos;: request.user,
-    &apos;form&apos;: form
-}
-return render(request, &apos;look/user.html&apos;, context)
-</code></pre><p>all the other key / value pairs work just fine but the <code>form</code> variable is not available in the <code>.html</code>. I did something like this:</p>
-<pre><code>{% if form %} form is true
-    {% else %} form is false
-    {% endif %}
-</code></pre><p>the result is <code>form is false</code> which indicates although I passed the TweetForm instance to the context, somehow it`s not available in the html and I can`t explain what is going on because it should have worked.<br>I already posted a question on <a href="http://stackoverflow.com/questions/38697257/cant-render-django-form-in-the-template" target="_blank" rel="external">stackoverflow: Cant`t render forms</a>. Hopefully someone could help me out on this one.  </p>
+<p>The thing is, I <em>can</em> actually render the form using python shell and it`s a bunch of html form tags and codes which are exactly what I need. However, the <code></code> in the html template is not working. So this led me to check whether the view has correctly render the <code>context</code>. The <code>context</code> looks like this:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">context = &#123;</div><div class="line">    <span class="string">'activities'</span>: activities,</div><div class="line">    <span class="string">'user'</span>: user,</div><div class="line">    <span class="string">'login_user'</span>: request.user,</div><div class="line">    <span class="string">'form'</span>: form</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> render(request, <span class="string">'look/user.html'</span>, context)</div></pre></td></tr></table></figure></p>
+<p>all the other key / value pairs work just fine but the <code>form</code> variable is not available in the <code>.html</code>. I did something like this:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% if form %&#125; form is true</div><div class="line">&#123;% else %&#125; form is false</div><div class="line">&#123;% endif %&#125;</div></pre></td></tr></table></figure></p>
+<p>the result is <code>form is false</code> which indicates although I passed the TweetForm instance to the context, somehow it`s not available in the html and I can`t explain what is going on because it should have worked.<br>I already posted a question on <a href="http://stackoverflow.com/questions/38697257/cant-render-django-form-in-the-template" target="_blank" rel="external">stackoverflow: Cant`t render forms</a>. Hopefully someone could help me out on this one.  </p>
 
 
                 <hr>
