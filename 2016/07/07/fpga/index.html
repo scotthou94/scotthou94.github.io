@@ -7,16 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Share some thoughts">
-    <meta name="keyword"  content="undefined">
+    <meta name="keyword" content="undefined">
     <meta name="theme-color" content="#600090">
     <meta name="msapplication-navbutton-color" content="#600090">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#60090">
-    <link rel="shortcut icon" href="/img/coffee.png">
-
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="scotthou94" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-          Getting to know RGMII｜scotthou94`s blog
+        Getting to know RGMII｜scotthou94`s blog
         
     </title>
 
@@ -30,30 +32,16 @@
 
     <!-- Pygments Github CSS -->
     <link rel="stylesheet" href="/css/syntax.css">
-
-    <!-- Custom Fonts -->
-    <link href="https://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- ga & ba script hoook -->
-    <script></script>
 </head>
 
 <style>
 
-    header.intro-header{
+    header.intro-header {
         background-image: url('undefined')
     }
 </style>
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
@@ -66,7 +54,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand animated pulse" href="/">
                 <span class="brand-logo">
                     scotthou94
                 </span>
@@ -112,7 +100,7 @@
     // Drop Bootstarp low-performance Navbar
     // Use customize navbar with high-quality material design animation
     // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
+//    var $body   = document.body;
     var $toggle = document.querySelector('.navbar-toggle');
     var $navbar = document.querySelector('#huxblog_navbar');
     var $collapse = document.querySelector('.navbar-collapse');
@@ -137,24 +125,25 @@
     }
 </script>
 
-    <!-- Main Content -->
-    
-<!-- Image to hack wechat -->
+<!-- Main Content -->
+
 <!--only post-->
 
-    
-        <img class="wechat-title-img" src="snowfalling.jpg">
-    
+
+<img class="wechat-title-img"
+     src="snowfalling.jpg">
+
 
 <style>
-
-    header.intro-header{
+    
+    header.intro-header {
         background-image: url('snowfalling.jpg')
     }
 
+    
 </style>
 
-<header class="intro-header" >
+<header class="intro-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
@@ -163,15 +152,17 @@
                     
                     <span class="meta">
                          作者 Scott Hou
-                         <span>
+                        <span>
                           日期 2016-07-07
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/tags/#fpga" title="fpga">fpga</a>
+                        <a class="tag" href="/tags/#fpga"
+                           title="fpga">fpga</a>
                         
-                        <a class="tag" href="/tags/#RGMII" title="RGMII">RGMII</a>
+                        <a class="tag" href="/tags/#RGMII"
+                           title="RGMII">RGMII</a>
                         
                     </div>
                 </div>
@@ -189,27 +180,26 @@
 <article>
     <div class="container">
         <div class="row">
-                <!-- Post Container -->
+            <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-
                 <p>Currently I`m working on a project which aims to accelerate virtual network functions with FPGA. I`ve been waiting for months but still haven`t got the high-end FPGA our lab purchased last year. Therefore, my fella I`ve been working together bought a relatively low-end fpga, SPARTAN-6, so that we can carry on with the research.<br>See, the trend of heterogeneous computing is moving towards <strong>OpenCL</strong> which has numerous advantages, such as familiar development experience among others, that can facilitate our research. Unfortunately, the fpga board we now have doesn`t support OpenCL which leaves us with no course but to code in Verilog. Although I`ve worked on Verilog for a while to develop an E-piano based on fpga with an external keyboard, conducting the research project is another league. So recently I`m learning how to do network programming with Verilog.<br>For starters, I need to get familiar with RGMII.</p>
 <h3 id="RGMII"><a href="#RGMII" class="headerlink" title="RGMII"></a>RGMII</h3><p>Reduced Gigabit Media-Independent Interface is the interface that connects fast ethernet MAC to a PHY chip. RGMII PHY and a VSC8601 chip are integrated in the Spartan-6 fpga board. Sending/Receiving datastreams using RGMII is not that hard once we know the rules that have to be followed. The interface is programmable which means we`re presented with a lot of choices regarding the data transmission/receiving. Here I`m going to talk about the DDR mode.<br>DDR stands for double data rate. Implement this function is simple. By instantiating the primitive of IDDR2/ODDR2, we can set the right parameters so that the data would be transeived at DDR mode. Also, the robustness of the data transmission could be tested by a test program which sends data from 1 to 255 repeatedly.</p>
 
-
                 <hr>
-
                 
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2016/08/01/Working-with-Django-Form/" data-toggle="tooltip" data-placement="top" title="Working with Django Form">&larr; Previous Post</a>
-                        </li>
+                    <li class="previous">
+                        <a href="/ 2016/08/01/Working-with-Django-Form/" data-toggle="tooltip" data-placement="top"
+                           title="Working with Django Form">&larr; Previous Post</a>
+                    </li>
                     
                     
-                        <li class="next">
-                            <a href="/2016/07/02/blog/" data-toggle="tooltip" data-placement="top" title="Getting to Know ForeignKey">Next Post &rarr;</a>
-                        </li>
+                    <li class="next">
+                        <a href="/ 2016/07/02/blog/" data-toggle="tooltip" data-placement="top"
+                           title="Getting to Know ForeignKey">Next Post &rarr;</a>
+                    </li>
                     
                 </ul>
 
@@ -225,7 +215,7 @@
 
             </div>
 
-            <div class="hidden-xs col-sm-3 toc-col" >
+            <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
                     <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#RGMII"><span class="toc-text">RGMII</span></a></li></ol>
                 </div>
@@ -244,14 +234,16 @@
                 
                 <section>
                     <!-- no hr -->
-                <h5 class="text-center">
-                    <a href="/tags/">FEATURED TAGS</a>
-                </h5>
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#fpga" title="fpga">fpga</a>
+                        <a class="tag" href="/tags/#fpga"
+                           title="fpga">fpga</a>
                         
-                          <a class="tag" href="/tags/#RGMII" title="RGMII">RGMII</a>
+                        <a class="tag" href="/tags/#RGMII"
+                           title="RGMII">RGMII</a>
                         
                     </div>
                 </section>
@@ -259,21 +251,20 @@
 
                 <!-- Friends Blog -->
                 
-                <hr>
-                <h5 class="text-center">FRIENDS</h5>
-                <ul class="list-inline text-center">
-
-                    
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
                         <li><a href="http://ualyx.com/">Liyunxuan</a></li>
-                    
-                </ul>
+                        
+                    </ul>
+                </div>
                 
             </div>
         </div>
 
     </div>
 </article>
-
 
 
 
@@ -284,8 +275,10 @@
     var disqus_identifier = "https://scotthou94.github.com/2016/07/07/fpga/";
     var disqus_url = "https://scotthou94.github.com/2016/07/07/fpga/";
 
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    (function () {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
@@ -295,14 +288,12 @@
 
 
 
-
-    <!-- Footer -->
-    <!-- Footer -->
+<!-- Footer -->
+<!-- Footer -->
 <footer>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <span class="text-muted"style="font-size: 14px">双击导航条返回顶部</span>
                 <br>
                 <ul class="list-inline text-center">
                 
@@ -376,7 +367,6 @@
 <!-- Custom Theme JavaScript -->
 <script src="/js/blog.js"></script>
 
-
 <!-- async load function -->
 <script>
     function async(u, c) {
@@ -405,7 +395,7 @@
 
 <!--fastClick.js -->
 <script>
-    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
@@ -430,8 +420,8 @@
 
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-    <!--wechat title img-->
-    <img class="wechat-title-img" src="https://avatars.githubusercontent.com/scotthou94">
+<!--wechat title img-->
+<img class="wechat-title-img" src="https://avatars.githubusercontent.com/scotthou94">
 </body>
 
 </html>
